@@ -1,7 +1,7 @@
 #ifndef CPPLIB_DATASTRUCTURES_VECTOR_H
 #define CPPLIB_DATASTRUCTURES_VECTOR_H
 
-#include "Sequence.h"
+#include <CppLib/DataStructures/Sequence.h>
 
 namespace DataStructures
 {
