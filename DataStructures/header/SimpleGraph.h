@@ -41,18 +41,18 @@ namespace DataStructures
 			relation = new Vector<List<Type>*>(init_cap);
 		}
 		
-		SimpleGraph(const SimpleGraph<Type>& g) : SimpleGraph<Type>(g.countVertex())
+		SimpleGraph(const SimpleGraph<Type>& g) : SimpleGraph<Type>(g.countVertices())
 		{
-			size_t size = g.countVertex();
+			size_t size = g.countVertices();
 			Vector<Type> v;
 			//inserindo vértices
-			for(int i=0; i < size; i++)
+			for(size_t i=0; i < size; i++)
 			{
 				vertex->pushBack(g.getVertex(i));
 				relation->pushBack(new List<Type>());
 			}
 			//inserindo arestas
-			for(int i=0; i < size; i++)
+			for(size_t i=0; i < size; i++)
 			{
 				v = g.edgesFrom((*vertex)[i]);
 				while(!v.isEmpty())
@@ -69,7 +69,7 @@ namespace DataStructures
 			}
 			if(relation != nullptr)
 			{
-				for(int i=0; i < relation->getSize(); i++)
+				for(size_t i=0; i < relation->getSize(); i++)
 					delete (*relation)[i];
 				delete relation;
 				relation = nullptr;
@@ -80,19 +80,19 @@ namespace DataStructures
 		{
 			this->~SimpleGraph<Type>();
 			
-			size_t size = g.countVertex();
+			size_t size = g.countVertices();
 			vertex = new Vector<Type>(size);
-			relation = new Vector<List<size_t>>(size);
+			relation = new Vector<List<Type>*>(size);
 			Vector<Type> v;
 			
 			//inserindo vértices
-			for(int i=0; i < size; i++)
+			for(size_t i=0; i < size; i++)
 			{
 				vertex->pushBack(g.getVertex(i));
 				relation->pushBack(new List<Type>());
 			}
 			//inserindo arestas
-			for(int i=0; i < size; i++)
+			for(size_t i=0; i < size; i++)
 			{
 				v = g.edgesFrom((*vertex)[i]);
 				while(!v.isEmpty())
@@ -103,17 +103,17 @@ namespace DataStructures
 		
 		//busca e verificação
 		bool isAllocated() const { return (this->vertex != nullptr && this->relation != nullptr); }
-		long int indexOf(Type v) const { return vertex->indexOf(v); }
-		bool contains(Type v) const { return (indexOf(v) >= 0); }
+		size_t indexOf(Type v) const { return vertex->indexOf(v); }
+		inline bool contains(Type v) const { return (indexOf(v) >= 0); }
 		bool contains(Type v1, Type v2) const 
 		{
-			long int idx1 = indexOf(v1);
+			size_t idx1 = indexOf(v1);
 			return (idx1 >= 0 ? (*relation)[idx1]->contains(v2) : false);
 		}
 		
-		size_t getSize() const { return countVertex() + countEdge(); }
-		size_t countVertex() const { return vertex->getSize(); }
-		size_t countEdge() const 
+		inline size_t getSize() const { return countVertices() + countEdges(); }
+		size_t countVertices() const { return vertex->getSize(); }
+		size_t countEdges() const 
 		{
 			size_t qt = 0;
 			size_t size = vertex->getSize();
@@ -127,15 +127,15 @@ namespace DataStructures
 		size_t degreeOf(Type v) const 
 		{
 			int idx = vertex->indexOf(v);
-			return ((idx >= 0) ? (*relation)[idx]->getSize() : 0);
+			return (vertex->isValidIndex(idx) ? (*relation)[idx]->getSize() : 0);
 		}
 		
 		bool operator==(SimpleGraph<Type>& g)
 		{
-			size_t qtV = this->countVertex();
-			size_t qtE = this->countEdge();
+			size_t qtV = this->countVertices();
+			size_t qtE = this->countEdges();
 			
-			if(qtV != g.countVertex() || qtE != g.countEdge())
+			if(qtV != g.countVertices() || qtE != g.countEdges())
 				return false;
 			
 			for(size_t i=0; i<qtV; i++)
@@ -164,29 +164,29 @@ namespace DataStructures
 		
 		void removeVertex(Type v)
 		{
-			long int index = vertex->indexOf(v);
-			if(index >= 0)
+			size_t index = vertex->indexOf(v);
+			if(vertex->isValidIndex(index))
 			{
 				vertex->erase(index);
 				delete (*relation)[index];
 				relation->erase(index);
 				
-				long int idx0;
+				size_t idx0;
 				for(size_t i=0; i < vertex->getSize(); i++)
 				{
 					idx0 = (*relation)[i]->indexOf(v);
-					if(idx0 >= 0)
+					if(vertex->isValidIndex(idx0))
 						(*relation)[i]->erase(idx0);
 				}
 			}
 		}
 		
-		bool getEdge(Type v1, Type v2) const { return this->contains(v1,v2); }
+		inline bool getEdge(Type v1, Type v2) const { return this->contains(v1,v2); }
 		
 		void insertEdge(Type v1, Type v2)
 		{
-			long int idx1 = indexOf(v1);
-			if(idx1 >= 0)
+			size_t idx1 = indexOf(v1);
+			if(vertex->isValidIndex(idx1))
 				if(!(*relation)[idx1]->contains(v2))
 				{
 					List<Type> *l = (*relation)[idx1];
@@ -203,11 +203,11 @@ namespace DataStructures
 		
 		void removeEdge(Type v1, Type v2)
 		{
-			long int idx1 = indexOf(v1);
-			if(idx1 >= 0)
+			size_t idx1 = indexOf(v1);
+			if(vertex->isValidIndex(idx1))
 			{
-				long int idx0 = (*relation)[idx1]->indexOf(v2);
-				if(idx0 >= 0)
+				size_t idx0 = (*relation)[idx1]->indexOf(v2);
+				if(this->vertex->isValidIndex(idx0))
 					(*relation)[idx1]->erase(idx0);
 			}
 		}
@@ -222,13 +222,18 @@ namespace DataStructures
 		
 		Vector<Type> edgesFrom(Type v) const 
 		{
-			long int idx = this->indexOf(v);
-			if(idx >= 0)
+			size_t idx = this->indexOf(v);
+			if(this->vertex->isValidIndex(idx))
 			{
-				List<Type> rel = *(*relation)[idx];
-				Vector<Type> vec = Vector<Type>(rel.getSize());
-				while(!rel.isEmpty())
-					vec.pushBack(rel.popFront());
+				List<Type> *rel = (*relation)[idx];
+				Node<Type> *node = rel->nthNode(0);
+				Vector<Type> vec = Vector<Type>(rel->getSize());
+				
+				while(!rel->isBaseNode(node))
+				{
+					vec.pushBack(node->value);
+					node = node->next();
+				}
 				return vec;
 			}
 			else

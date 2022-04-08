@@ -19,8 +19,8 @@ namespace DataStructures
 		Node<Type>(){ nxt = prv = nullptr; }
 		Node<Type>(Type val) : Node<Type>(){ value = val; }
 		
-		Node<Type>* next(){ return nxt; }
-		Node<Type>* prev(){ return prv; }
+		Node<Type>* next() const { return nxt; }
+		Node<Type>* prev() const { return prv; }
 		
 		friend class List<Type>;
 	};
@@ -86,11 +86,10 @@ namespace DataStructures
 		Node<Type>* nthNode(size_t idx) const 
 		{
 			Node<Type> *n = this->head; //ponteiro para o nó-cabeça (anterior ao nó 0)
-			while(idx != ~0)
-			{
+			
+			while(idx-- != ~0)
 				n = n->nxt;
-				idx--;
-			}
+			
 			return n;
 		}
 		

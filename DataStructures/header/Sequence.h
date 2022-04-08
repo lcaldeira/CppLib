@@ -11,8 +11,9 @@ namespace DataStructures
 	public:
 		//busca e verificação
 		virtual size_t findNext(Type value, size_t idx) const = 0;
-		virtual size_t indexOf(Type value) const { return findNext(value,0); }
-		virtual bool contains(Type value) const { return ~indexOf(value); }
+		virtual inline size_t indexOf(Type value) const { return findNext(value,0); }
+		virtual inline bool contains(Type value) const { return ~indexOf(value); }
+		virtual inline bool isValidIndex(size_t idx) const { return (idx != ~0 && idx < this->getSize()); }
 		
 		//acesso e manipulação
 		virtual Type& operator[](size_t index) const = 0;

@@ -2,7 +2,7 @@
 #include <CppLib/DataStructures/Vector.h>
 #include <CppLib/Utilities/UnitaryTests.h>
 
-using namespace DataStructure;
+using namespace DataStructures;
 using namespace UnitaryTests;
 
 typedef TestRoutine<Vector<void>> TestRoutineDS;
@@ -27,9 +27,9 @@ void TestRoutineDS::run(char flag){
 		v1.pushFront(0);			//	{0,1,2,3,4}
 		
 		if(v1.getSize()==5 && v1[0]==0 && v1[1]==1 && v1[2]==2 && v1[3]==3 && v1[4]==4)
-			log(Success, DEBUG_MSG("insert operations validated"));
+			log(Success, DEBUG_MSG("insert operation validated"));
 		else 
-			log(Failure, DEBUG_MSG("insert operations aren't working"));
+			log(Failure, DEBUG_MSG("insert operation isn't working"));
 		
 		// erase(), popFront(), popBack()
 		//-------------------------------------------------
@@ -38,9 +38,9 @@ void TestRoutineDS::run(char flag){
 		v1.erase(1);				//	{1,3}
 		
 		if(v1.getSize()==2 && v1[0]==1 && v1[1]==3)
-			log(Success, DEBUG_MSG("erase operations validated"));
+			log(Success, DEBUG_MSG("erase operation validated"));
 		else 
-			log(Failure, DEBUG_MSG("erase operations aren't working"));
+			log(Failure, DEBUG_MSG("erase operation isn't working"));
 		
 		// comparisons
 		//-------------------------------------------------
@@ -76,7 +76,7 @@ void TestRoutineDS::run(char flag){
 		//-------------------------------------------------
 		v1.clear();
 		if(v1.getSize()==0)
-			log(Success, DEBUG_MSG("clear operation is working ok"));
+			log(Success, DEBUG_MSG("clear operation is working"));
 		else
 			log(Failure, DEBUG_MSG("clear operation is not working"));
 		
@@ -89,7 +89,7 @@ void TestRoutineDS::run(char flag){
 		//-------------------------------------------------
 		v1.resize(12);
 		if(v1.getCapacity()==12 && v1.getSize()==0)
-			log(Success, DEBUG_MSG("resize operation is working ok"));
+			log(Success, DEBUG_MSG("resize operation is working"));
 		else
 			log(Failure, DEBUG_MSG("resize operation is not working"));
 		
@@ -104,7 +104,7 @@ void TestRoutineDS::run(char flag){
 					break;
 				}
 			if(flag)
-				log(Success, DEBUG_MSG("fill operation is working ok"));
+				log(Success, DEBUG_MSG("fill operation is working"));
 			else
 				log(AlmostFailure, DEBUG_MSG("fill operation is not completely working"));
 		}
@@ -118,7 +118,7 @@ void TestRoutineDS::run(char flag){
 		v1.popBack();
 		v1.shrink();
 		if(v1.getSize()==v1.getCapacity() && v1.getSize()==size-2)
-			log(Success, DEBUG_MSG("shrink operation is working ok"));
+			log(Success, DEBUG_MSG("shrink operation is working"));
 		else
 			log(Failure, DEBUG_MSG("shrink operation is not working"));
 	}
