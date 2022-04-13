@@ -71,8 +71,8 @@ namespace DataStructures
 		
 		//conversão para texto		
 		virtual std::string strFormat(char c=' ') const { return "{-}"; }
-		operator std::string() const { return this->strFormat(); }
-		virtual void print(){ std::cout << (this->strFormat()) << '\n'; }
+		virtual inline void print(){ std::cout << (this->strFormat()) << '\n'; }
+		inline operator std::string() const { return this->strFormat(); }
 		
 		template<class T>
 		friend std::ostream& operator<<(std::ostream& ost, Container<T>& c);

@@ -87,7 +87,7 @@ namespace DataStructures
 		{
 			Node<Type> *n = this->head; //ponteiro para o nó-cabeça (anterior ao nó 0)
 			
-			while(idx-- != ~0)
+			while(this->isValidIndex(idx--))
 				n = n->nxt;
 			
 			return n;

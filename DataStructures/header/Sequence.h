@@ -18,8 +18,8 @@ namespace DataStructures
 		//acesso e manipulação
 		virtual Type& operator[](size_t index) const = 0;
 		
-		virtual Type get(size_t index) const { return *this->at(index); }
-		virtual void set(Type value, size_t index){ *this->at(index) = value; }
+		virtual inline Type get(size_t index) const { return *this->at(index); }
+		virtual inline void set(Type value, size_t index){ *this->at(index) = value; }
 		virtual void insert(Type value, size_t index) = 0;
 		virtual Type erase(size_t index) = 0;
 		

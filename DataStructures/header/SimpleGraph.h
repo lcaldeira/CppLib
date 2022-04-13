@@ -54,7 +54,7 @@ namespace DataStructures
 			//inserindo arestas
 			for(size_t i=0; i < size; i++)
 			{
-				v = g.edgesFrom((*vertex)[i]);
+				v = g.neighborsOf((*vertex)[i]);
 				while(!v.isEmpty())
 					(*relation)[i]->pushBack(v.popBack());
 			}
@@ -94,7 +94,7 @@ namespace DataStructures
 			//inserindo arestas
 			for(size_t i=0; i < size; i++)
 			{
-				v = g.edgesFrom((*vertex)[i]);
+				v = g.neighborsOf((*vertex)[i]);
 				while(!v.isEmpty())
 					(*relation)[i]->pushBack(v.popBack());
 			}
@@ -112,7 +112,7 @@ namespace DataStructures
 		}
 		
 		inline size_t getSize() const { return countVertices() + countEdges(); }
-		size_t countVertices() const { return vertex->getSize(); }
+		inline size_t countVertices() const { return vertex->getSize(); }
 		size_t countEdges() const 
 		{
 			size_t qt = 0;
@@ -153,7 +153,7 @@ namespace DataStructures
 		//acesso e manipulação
 		Type getVertex(size_t index) const { return vertex->get(index); }
 		
-		void insertVertex(Type v)
+		void addVertex(Type v)
 		{
 			if(!vertex->contains(v))
 			{
@@ -183,33 +183,53 @@ namespace DataStructures
 		
 		inline bool getEdge(Type v1, Type v2) const { return this->contains(v1,v2); }
 		
-		void insertEdge(Type v1, Type v2)
-		{
-			size_t idx1 = indexOf(v1);
-			if(vertex->isValidIndex(idx1))
-				if(!(*relation)[idx1]->contains(v2))
-				{
-					List<Type> *l = (*relation)[idx1];
-					int idx0 = l->getSize();
-					for(int i=0; i < l->getSize(); i++)
-						if(l->get(i) > v2)
-						{
-							idx0 = i;
-							break;
-						}
-					l->insert(v2,idx0);
-				}
-		}
-		
-		void removeEdge(Type v1, Type v2)
+		void addArrow(Type v1, Type v2)
 		{
 			size_t idx1 = indexOf(v1);
 			if(vertex->isValidIndex(idx1))
 			{
-				size_t idx0 = (*relation)[idx1]->indexOf(v2);
-				if(this->vertex->isValidIndex(idx0))
-					(*relation)[idx1]->erase(idx0);
+				List<Type> *adj = (*relation)[idx1];
+				
+				if(!adj->contains(v2))
+				{
+					Node<Type> *n = adj->nthNode(0);
+					size_t idx2 = 0;
+					
+					while(!adj->isBaseNode(n) && n->value < v2)
+					{
+						n = n->next();
+						idx2++;
+					}
+					
+					adj->insert(v2, idx2);
+				}
 			}
+		}
+		
+		inline void addEdge(Type v1, Type v2)
+		{
+			this->addArrow(v1, v2);
+			this->addArrow(v2, v1);
+		}
+		
+		void removeArrow(Type v1, Type v2)
+		{
+			size_t idx1 = indexOf(v1);
+			
+			if(vertex->isValidIndex(idx1))
+			{
+				List<Type> *adj = (*relation)[idx1];
+				size_t idx2 = adj->indexOf(v2);
+				
+				if(adj->isValidIndex(idx2))
+					adj->erase(idx2);
+			}
+		}
+		
+		inline void removeEdge(Type v1, Type v2)
+		{
+			this->removeArrow(v1, v2);
+			this->removeArrow(v2, v1);
 		}
 		
 		void clear()
@@ -220,7 +240,7 @@ namespace DataStructures
 			this->relation->clear();
 		}
 		
-		Vector<Type> edgesFrom(Type v) const 
+		Vector<Type> neighborsOf(Type v) const 
 		{
 			size_t idx = this->indexOf(v);
 			if(this->vertex->isValidIndex(idx))
@@ -249,8 +269,9 @@ namespace DataStructures
 			
 			for(int i=0; i<size; i++)
 			{
-				ss << (*vertex)[i] << ": ";
-				ss << edgesFrom((*vertex)[i]).strFormat();
+				Type value = (*vertex)[i];
+				ss << value << ": ";
+				ss << neighborsOf(value).strFormat();
 				ss << '\n';
 			}
 			return ss.str();

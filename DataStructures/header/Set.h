@@ -49,11 +49,11 @@ namespace DataStructures
 		//~Set(){ this->~TypeC<Type>(); }
 		
 		//busca e verificação
-		bool isAllocated() const { return TypeC<Type>::isAllocated(); }
-		bool isEmpty() const { return TypeC<Type>::isEmpty(); }
-		size_t getSize() const { return TypeC<Type>::getSize(); }
-		size_t indexOf(Type value) const { return TypeC<Type>::indexOf(value); }
-		bool contains(Type value) const { return TypeC<Type>::contains(value); }
+		inline bool isAllocated() const { return TypeC<Type>::isAllocated(); }
+		inline bool isEmpty() const { return TypeC<Type>::isEmpty(); }
+		inline size_t getSize() const { return TypeC<Type>::getSize(); }
+		inline size_t indexOf(Type value) const { return TypeC<Type>::indexOf(value); }
+		inline bool contains(Type value) const { return TypeC<Type>::contains(value); }
 		
 		template<typename T=Type>
 		decltype(auto) operator==(Set<T>& s)
@@ -72,15 +72,15 @@ namespace DataStructures
 		{ return !(this->operator==(s)); }
 		
 		//acesso e manipulação
-		Type get(size_t index) const { return TypeC<Type>::get(index); }
+		inline Type get(size_t index) const { return TypeC<Type>::get(index); }
 		
 		void set(Type value, size_t index)
 		{
 			size_t idx = this->indexOf(value);
-			if(idx == ~0)
-				TypeC<Type>::insert(value,index);
-			else
-				TypeC<Type>::swap(index,idx);
+			if(!TypeC<Type>::isValidIndex(idx))
+				TypeC<Type>::insert(value, index);
+			else if(index != idx)
+				TypeC<Type>::swap(index, idx);
 		}
 		
 		void add(Type value)
@@ -91,12 +91,12 @@ namespace DataStructures
 		
 		void remove(Type value)
 		{
-			long int idx = TypeC<Type>::indexOf(value);
-			if(idx >= 0)
+			size_t idx = TypeC<Type>::indexOf(value);
+			if(TypeC<Type>::isValidIndex(idx))
 				TypeC<Type>::erase(idx);
 		}
 		
-		void clear(){ TypeC<Type>::clear(); }
+		inline void clear(){ TypeC<Type>::clear(); }
 		
 		//operações de conjunto
 		template<typename T, template<typename> class Tc1, template<typename> class Tc2>
@@ -111,19 +111,19 @@ namespace DataStructures
 		template<template<typename> class Tc>
 		void unionWith(Set<Type,Tc> s)
 		{
-			for(int i=0; i < s.getSize(); i++)
+			for(size_t i=0; i < s.getSize(); i++)
 				this->add(s.get(i));
 		}
 		template<template<typename> class Tc>
 		void diffWith(Set<Type,Tc> s)
 		{
-			for(int i=0; i < s.getSize(); i++)
+			for(size_t i=0; i < s.getSize(); i++)
 				this->remove(s.get(i));
 		}
 		template<template<typename> class Tc>
 		void intersecWith(Set<Type,Tc> s)
 		{
-			for(int i=0; i < this->getSize(); i++)
+			for(size_t i=0; i < this->getSize(); i++)
 				if(!s.contains(this->get(i)))
 				{
 					TypeC<Type>::erase(i);
@@ -132,9 +132,9 @@ namespace DataStructures
 		}
 		
 		//conversão para texto
-		std::string strFormat(char c='{') const { return TypeC<Type>::strFormat(c); }
+		inline std::string strFormat(char c='{') const { return TypeC<Type>::strFormat(c); }
+		inline void print(){ std::cout << TypeC<Type>::strFormat('{') << '\n'; }
 		operator std::string() const { return TypeC<Type>::strFormat('{'); }
-		void print(){ std::cout << TypeC<Type>::strFormat('{') << '\n'; }
 		
 		template<class T>
 		friend std::ostream& operator<<(std::ostream& ost, Set<T>& c);
@@ -143,10 +143,13 @@ namespace DataStructures
 	template<typename T, template<typename> class Tc1, template<typename> class Tc2>
 	Set<T> operator+(Set<T,Tc1> s1, Set<T,Tc2> s2)
 	{
-		Set<T> s = Set<T>(8);
-		for(int i=0; i < s1.getSize(); i++)
+		size_t l1 = s1.getSize();
+		size_t l2 = s2.getSize();
+		Set<T> s = Set<T>(l1+l2);
+		
+		for(size_t i=0; i < l1; i++)
 			s.add(s1.get(i));
-		for(int i=0; i < s2.getSize(); i++)
+		for(size_t i=0; i < l2; i++)
 			s.add(s2.get(i));
 		return s;
 	}
@@ -154,8 +157,10 @@ namespace DataStructures
 	template<typename T, template<typename> class Tc1, template<typename> class Tc2>
 	Set<T> operator-(Set<T,Tc1> s1, Set<T,Tc2> s2)
 	{
-		Set<T> s = Set<T>(8);
-		for(int i=0; i < s1.getSize(); i++)
+		size_t l1 = s1.getSize();
+		Set<T> s = Set<T>(l1);
+		
+		for(size_t i=0; i < l1; i++)
 			if(!s2.contains(s1.get(i)))
 				s.add(s1.get(i));
 		return s;
@@ -164,11 +169,15 @@ namespace DataStructures
 	template<typename T, template<typename> class Tc1, template<typename> class Tc2>
 	Set<T> operator^(Set<T,Tc1> s1, Set<T,Tc2> s2)
 	{
-		Set<T> s = Set<T>(8);
-		for(int i=0; i < s1.getSize(); i++)
+		size_t l1 = s1.getSize();
+		Set<T> s = Set<T>(l1);
+		
+		for(size_t i=0; i < l1; i++)
 			if(s2.contains(s1.get(i)))
 				s.add(s1.get(i));
 		return s;
+		
+		
 	}
 
 	template<typename Type>

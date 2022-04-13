@@ -13,7 +13,7 @@ namespace DataStructures
 		size_t size;
 		size_t capacity;
 		
-		Type* at(size_t index) const { return &(this->data[index]); }
+		inline Type* at(size_t index) const { return &(this->data[index]); }
 	public:
 		//construtor e destrutor
 		Vector<Type>()
@@ -82,9 +82,9 @@ namespace DataStructures
 		}
 
 		//busca e verificação
-		bool isAllocated() const { return this->data != nullptr; }
-		size_t getSize() const { return this->size; }
-		size_t getCapacity() const { return this->capacity; }
+		inline bool isAllocated() const { return this->data != nullptr; }
+		inline size_t getSize() const { return this->size; }
+		inline size_t getCapacity() const { return this->capacity; }
 		
 		size_t findNext(Type value, size_t idx) const
 		{
@@ -114,7 +114,7 @@ namespace DataStructures
 		{ return !(this->operator==(v)); }
 
 		//acesso e manipulação
-		Type& operator[](size_t index) const { return this->data[index]; }
+		inline Type& operator[](size_t index) const { return this->data[index]; }
 		
 		void insert(Type value, size_t index)
 		{
@@ -140,10 +140,10 @@ namespace DataStructures
 			return t;
 		}
 
-		void pushFront(Type value){ insert(value, 0); }
-		void pushBack(Type value){ insert(value, this->size); }
-		Type popFront(){ return erase(0); }
-		Type popBack(){ return erase(this->size-1); }
+		inline void pushFront(Type value){ insert(value, 0); }
+		inline void pushBack(Type value){ insert(value, this->size); }
+		inline Type popFront(){ return erase(0); }
+		inline Type popBack(){ return erase(this->size-1); }
 		
 		void fill(Type value)
 		{
@@ -166,8 +166,8 @@ namespace DataStructures
 			delete[] old_data;
 		}
 		
-		void shrink(){ this->resize(this->size); }
-		void clear(){ this->size = 0; }
+		inline void shrink(){ this->resize(this->size); }
+		inline void clear(){ this->size = 0; }
 		
 		//conversão para texto
 		template<typename T=Type, isPrintable<T>* = nullptr>
@@ -195,10 +195,11 @@ namespace DataStructures
 		}
 		
 		template<typename T=Type, isntPrintable<T>* = nullptr>
-		std::string strFormat(char c=' ') const { return Container<Type>::strFormat(c); }
+		inline std::string strFormat(char c=' ') const { return Container<Type>::strFormat(c); }
 		
-		operator std::string() const { return this->strFormat(); }
-		virtual void print(){ std::cout << (this->strFormat()) << '\n'; }
+		inline operator std::string() const { return this->strFormat(); }
+		
+		virtual inline void print(){ std::cout << (this->strFormat()) << '\n'; }
 	};
 }
 #endif
