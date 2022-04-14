@@ -8,7 +8,11 @@
 #include <cstdint>
 #include <initializer_list>
 
+#ifndef CPPLIB_ABS_INC_PATH_F
 #include <CppLib/Utilities/TypeTraits.h>
+#else
+#include "../../Utilities/header/TypeTraits.h"
+#endif
 
 namespace DataStructures
 {

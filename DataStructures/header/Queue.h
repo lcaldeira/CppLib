@@ -1,7 +1,11 @@
 #ifndef CPPLIB_DATASTRUCTURES_QUEUE_H
 #define CPPLIB_DATASTRUCTURES_QUEUE_H
 
+#ifndef CPPLIB_ABS_INC_PATH_F
 #include <CppLib/DataStructures/List.h>
+#else
+#include "List.h"
+#endif
 
 namespace DataStructures
 {

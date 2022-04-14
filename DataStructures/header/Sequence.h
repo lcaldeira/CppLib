@@ -1,7 +1,11 @@
 #ifndef CPPLIB_DATASTRUCTURES_SEQUENCE_H
 #define CPPLIB_DATASTRUCTURES_SEQUENCE_H
 
+#ifndef CPPLIB_ABS_INC_PATH_F
 #include <CppLib/DataStructures/Container.h>
+#else
+#include "Container.h"
+#endif
 
 namespace DataStructures
 {

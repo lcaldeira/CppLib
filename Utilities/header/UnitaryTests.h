@@ -3,7 +3,13 @@
 
 #include <iostream>
 #include <sstream>
+
+#ifndef CPPLIB_ABS_INC_PATH_F
 #include <CppLib/Utilities/Macros.h>
+#else
+#include "Macros.h"
+#endif
+
 
 /*==================================================== 
  *		Automated test:

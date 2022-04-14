@@ -38,3 +38,243 @@ Score:
     * 8 successes out of 8 tests performed
     * 100% success rate
 ====================================================================
+System timestamp: Apr 13 2022 - 23:14:14
+(compilation time)
+
+====================================================================
+>> Module: "Vector" at "routines/Vector.h"
+====================================================================
+Test labels:
+    * get a [x] means 'succeed in the test'
+    * get a [=] means 'almost complete success'
+    * get a [-] means 'almost complete failure'
+    * get a [ ] means 'had a total failure'
+    * get a [o] means 'feature or test not present'
+    * get a [?] means 'inconclusive result'
+    * get a [v] means 'check valgrind output'
+====================================================================
+                       -----------------------
+                        Basic Functionalities 
+                       -----------------------
+[x]  "routines/Vector.h" at line 30: insert operation validated
+[x]  "routines/Vector.h" at line 41: erase operation validated
+[x]  "routines/Vector.h" at line 63: comparisons (eq and neq) are 
+        working
+[x]  "routines/Vector.h" at line 70: size and capacity getters 
+        working
+[x]  "routines/Vector.h" at line 79: clear operation is working
+                       -----------------------
+                        Extra Functionalities 
+                       -----------------------
+[x]  "routines/Vector.h" at line 92: resize operation is working
+[x]  "routines/Vector.h" at line 107: fill operation is working
+[x]  "routines/Vector.h" at line 121: shrink operation is working
+                    ----------------------------
+                     Constructor and Destructor 
+                    ----------------------------
+[o]  "routines/Vector.h" at line 128: tests not implemented yet
+====================================================================
+Score:
+    * 8 successes out of 8 tests performed
+    * 100% success rate
+====================================================================
+System timestamp: Apr 13 2022 - 23:15:31
+(compilation time)
+
+====================================================================
+>> Module: "Vector" at "routines/Vector.h"
+====================================================================
+Test labels:
+    * get a [x] means 'succeed in the test'
+    * get a [=] means 'almost complete success'
+    * get a [-] means 'almost complete failure'
+    * get a [ ] means 'had a total failure'
+    * get a [o] means 'feature or test not present'
+    * get a [?] means 'inconclusive result'
+    * get a [v] means 'check valgrind output'
+====================================================================
+                       -----------------------
+                        Basic Functionalities 
+                       -----------------------
+[x]  "routines/Vector.h" at line 30: insert operation validated
+[x]  "routines/Vector.h" at line 41: erase operation validated
+[x]  "routines/Vector.h" at line 63: comparisons (eq and neq) are 
+        working
+[x]  "routines/Vector.h" at line 70: size and capacity getters 
+        working
+[x]  "routines/Vector.h" at line 79: clear operation is working
+                       -----------------------
+                        Extra Functionalities 
+                       -----------------------
+[x]  "routines/Vector.h" at line 92: resize operation is working
+[x]  "routines/Vector.h" at line 107: fill operation is working
+[x]  "routines/Vector.h" at line 121: shrink operation is working
+                    ----------------------------
+                     Constructor and Destructor 
+                    ----------------------------
+[o]  "routines/Vector.h" at line 128: tests not implemented yet
+====================================================================
+Score:
+    * 8 successes out of 8 tests performed
+    * 100% success rate
+====================================================================
+System timestamp: Apr 13 2022 - 23:15:49
+(compilation time)
+
+====================================================================
+>> Module: "Vector" at "routines/Vector.h"
+====================================================================
+Test labels:
+    * get a [x] means 'succeed in the test'
+    * get a [=] means 'almost complete success'
+    * get a [-] means 'almost complete failure'
+    * get a [ ] means 'had a total failure'
+    * get a [o] means 'feature or test not present'
+    * get a [?] means 'inconclusive result'
+    * get a [v] means 'check valgrind output'
+====================================================================
+                       -----------------------
+                        Basic Functionalities 
+                       -----------------------
+[x]  "routines/Vector.h" at line 30: insert operation validated
+[x]  "routines/Vector.h" at line 41: erase operation validated
+[x]  "routines/Vector.h" at line 63: comparisons (eq and neq) are 
+        working
+[x]  "routines/Vector.h" at line 70: size and capacity getters 
+        working
+[x]  "routines/Vector.h" at line 79: clear operation is working
+                       -----------------------
+                        Extra Functionalities 
+                       -----------------------
+[x]  "routines/Vector.h" at line 92: resize operation is working
+[x]  "routines/Vector.h" at line 107: fill operation is working
+[x]  "routines/Vector.h" at line 121: shrink operation is working
+                    ----------------------------
+                     Constructor and Destructor 
+                    ----------------------------
+[o]  "routines/Vector.h" at line 128: tests not implemented yet
+====================================================================
+Score:
+    * 8 successes out of 8 tests performed
+    * 100% success rate
+====================================================================
+System timestamp: Apr 13 2022 - 23:15:49
+(compilation time)
+
+====================================================================
+>> Module: "Vector" at "routines/Vector.h"
+====================================================================
+Test labels:
+    * get a [x] means 'succeed in the test'
+    * get a [=] means 'almost complete success'
+    * get a [-] means 'almost complete failure'
+    * get a [ ] means 'had a total failure'
+    * get a [o] means 'feature or test not present'
+    * get a [?] means 'inconclusive result'
+    * get a [v] means 'check valgrind output'
+====================================================================
+                       -----------------------
+                        Basic Functionalities 
+                       -----------------------
+[x]  "routines/Vector.h" at line 30: insert operation validated
+[x]  "routines/Vector.h" at line 41: erase operation validated
+[x]  "routines/Vector.h" at line 63: comparisons (eq and neq) are 
+        working
+[x]  "routines/Vector.h" at line 70: size and capacity getters 
+        working
+[x]  "routines/Vector.h" at line 79: clear operation is working
+                       -----------------------
+                        Extra Functionalities 
+                       -----------------------
+[x]  "routines/Vector.h" at line 92: resize operation is working
+[x]  "routines/Vector.h" at line 107: fill operation is working
+[x]  "routines/Vector.h" at line 121: shrink operation is working
+                    ----------------------------
+                     Constructor and Destructor 
+                    ----------------------------
+[o]  "routines/Vector.h" at line 128: tests not implemented yet
+====================================================================
+Score:
+    * 8 successes out of 8 tests performed
+    * 100% success rate
+====================================================================
+System timestamp: Apr 13 2022 - 23:15:49
+(compilation time)
+
+====================================================================
+>> Module: "Vector" at "routines/Vector.h"
+====================================================================
+Test labels:
+    * get a [x] means 'succeed in the test'
+    * get a [=] means 'almost complete success'
+    * get a [-] means 'almost complete failure'
+    * get a [ ] means 'had a total failure'
+    * get a [o] means 'feature or test not present'
+    * get a [?] means 'inconclusive result'
+    * get a [v] means 'check valgrind output'
+====================================================================
+                       -----------------------
+                        Basic Functionalities 
+                       -----------------------
+[x]  "routines/Vector.h" at line 30: insert operation validated
+[x]  "routines/Vector.h" at line 41: erase operation validated
+[x]  "routines/Vector.h" at line 63: comparisons (eq and neq) are 
+        working
+[x]  "routines/Vector.h" at line 70: size and capacity getters 
+        working
+[x]  "routines/Vector.h" at line 79: clear operation is working
+                       -----------------------
+                        Extra Functionalities 
+                       -----------------------
+[x]  "routines/Vector.h" at line 92: resize operation is working
+[x]  "routines/Vector.h" at line 107: fill operation is working
+[x]  "routines/Vector.h" at line 121: shrink operation is working
+                    ----------------------------
+                     Constructor and Destructor 
+                    ----------------------------
+[o]  "routines/Vector.h" at line 128: tests not implemented yet
+====================================================================
+Score:
+    * 8 successes out of 8 tests performed
+    * 100% success rate
+====================================================================
+System timestamp: Apr 13 2022 - 23:16:26
+(compilation time)
+
+====================================================================
+>> Module: "Vector" at "routines/Vector.h"
+====================================================================
+Test labels:
+    * get a [x] means 'succeed in the test'
+    * get a [=] means 'almost complete success'
+    * get a [-] means 'almost complete failure'
+    * get a [ ] means 'had a total failure'
+    * get a [o] means 'feature or test not present'
+    * get a [?] means 'inconclusive result'
+    * get a [v] means 'check valgrind output'
+====================================================================
+                       -----------------------
+                        Basic Functionalities 
+                       -----------------------
+[x]  "routines/Vector.h" at line 30: insert operation validated
+[x]  "routines/Vector.h" at line 41: erase operation validated
+[x]  "routines/Vector.h" at line 63: comparisons (eq and neq) are 
+        working
+[x]  "routines/Vector.h" at line 70: size and capacity getters 
+        working
+[x]  "routines/Vector.h" at line 79: clear operation is working
+                       -----------------------
+                        Extra Functionalities 
+                       -----------------------
+[x]  "routines/Vector.h" at line 92: resize operation is working
+[x]  "routines/Vector.h" at line 107: fill operation is working
+[x]  "routines/Vector.h" at line 121: shrink operation is working
+                    ----------------------------
+                     Constructor and Destructor 
+                    ----------------------------
+[o]  "routines/Vector.h" at line 128: tests not implemented yet
+====================================================================
+Score:
+    * 8 successes out of 8 tests performed
+    * 100% success rate
+====================================================================

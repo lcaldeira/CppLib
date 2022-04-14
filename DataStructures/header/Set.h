@@ -1,8 +1,13 @@
 #ifndef CPPLIB_DATASTRUCTURES_SET_H
 #define CPPLIB_DATASTRUCTURES_SET_H
 
+#ifndef CPPLIB_ABS_INC_PATH_F
 #include <CppLib/DataStructures/Vector.h>
 #include <CppLib/DataStructures/List.h>
+#else
+#include "Vector.h"
+#include "List.h"
+#endif
 
 namespace DataStructures
 {

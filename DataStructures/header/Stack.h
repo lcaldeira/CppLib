@@ -1,7 +1,11 @@
 #ifndef CPPLIB_DATASTRUCTURES_STACK_H
 #define CPPLIB_DATASTRUCTURES_STACK_H
 
+#ifndef CPPLIB_ABS_INC_PATH_F
 #include <CppLib/DataStructures/Vector.h>
+#else
+#include "Vector.h"
+#endif
 
 namespace DataStructures
 {
