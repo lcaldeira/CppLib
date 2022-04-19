@@ -107,13 +107,13 @@ namespace DataStructures
 		}
 		
 		//busca e verificação
-		bool isAllocated() const { return (this->vertex != nullptr && this->relation != nullptr); }
-		size_t indexOf(Type v) const { return vertex->indexOf(v); }
-		inline bool contains(Type v) const { return (indexOf(v) >= 0); }
+		inline bool isAllocated() const { return (this->vertex != nullptr && this->relation != nullptr); }
+		inline size_t indexOf(Type v) const { return vertex->indexOf(v); }
+		inline bool contains(Type v) const { return vertex->isValidIndex(indexOf(v)); }
 		bool contains(Type v1, Type v2) const 
 		{
 			size_t idx1 = indexOf(v1);
-			return (idx1 >= 0 ? (*relation)[idx1]->contains(v2) : false);
+			return (vertex->isValidIndex(idx1) ? (*relation)[idx1]->contains(v2) : false);
 		}
 		
 		inline size_t getSize() const { return countVertices() + countEdges(); }
