@@ -119,9 +119,8 @@ namespace DataStructures
 		//acesso e manipulação
 		Type& operator[](size_t index) const { return this->nthNode(index)->value; }
 
-		void insert(Type value, size_t index)
+		void addressedInsert(Type value, Node<Type> *n0)
 		{
-			Node<Type> *n0 = this->nthNode(index-1);
 			Node<Type> *n1 = new Node<Type>(value);
 			
 			n1->nxt = n0->nxt;
@@ -132,9 +131,13 @@ namespace DataStructures
 			this->size++;
 		}
 
-		Type erase(size_t index)
+		inline void insert(Type value, size_t index)
 		{
-			Node<Type> *n0 = this->nthNode(index-1);
+			addressedInsert(value, this->nthNode(index-1));
+		}
+
+		Type addressedErase(Node<Type> *n0)
+		{
 			Node<Type> *n1 = n0->nxt;
 			
 			n0->nxt = n1->nxt;
@@ -145,6 +148,11 @@ namespace DataStructures
 			delete n1;
 
 			return value;
+		}
+
+		inline Type erase(size_t index)
+		{
+			return addressedErase(this->nthNode(index-1));
 		}
 
 		void pushFront(Type value){ insert(value, 0); }

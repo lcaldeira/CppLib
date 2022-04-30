@@ -194,20 +194,18 @@ namespace DataStructures
 			if(vertex->isValidIndex(idx1))
 			{
 				List<Type> *adj = (*relation)[idx1];
+				Node<Type> *n = adj->nthNode(0);
+				size_t idx2 = 0;
 				
-				if(!adj->contains(v2))
+				while(!adj->isBaseNode(n) && n->value <= v2)
 				{
-					Node<Type> *n = adj->nthNode(0);
-					size_t idx2 = 0;
-					
-					while(!adj->isBaseNode(n) && n->value < v2)
-					{
-						n = n->next();
-						idx2++;
-					}
-					
-					adj->insert(v2, idx2);
+					n = n->next();
+					idx2++;
 				}
+				
+				if(n->value != v2)
+					adj->addressedInsert(v2, n);
+					//adj->insert(v2, idx2);
 			}
 		}
 		
