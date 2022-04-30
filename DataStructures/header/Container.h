@@ -27,14 +27,14 @@ namespace DataStructures
 	protected:
 		virtual Type* at(size_t index) const = 0;
 	public:
-		//construtor e destrutor (modelos)
+		//construtor and destrutor that should be implemented
 		/*
 			Class() {}	// default constructor
 			Class(Args ...) {}	// parameterized constructor
 			Class(const Class& C) {} // copy constructor
 			Class& operator=(const Class& C) {} // copy assignment
 			friend Class& operator&=(Class& C1, Class& C2) {} // reference assignment
-			~Class() {} // destructor
+			virtual ~Class() {} // destructor
 		*/
 		
 		//busca e verificação
@@ -56,8 +56,10 @@ namespace DataStructures
 		}
 		
 		template<typename T=Type>
-		decltype(auto) operator!=(Container<T>& c)
-		{ return !(this->operator==(c)); }
+		inline decltype(auto) operator!=(Container<T>& c)
+		{
+			return !(this->operator==(c));
+		}
 		
 		/*auto operator==(Container<T>& c) -> decltype(*this == 
 		{
@@ -74,9 +76,9 @@ namespace DataStructures
 		bool operator!=(Container<Type>& c){ return !(this->operator==(c)); }*/
 		
 		//conversão para texto		
-		virtual std::string strFormat(char c=' ') const { return "{-}"; }
-		virtual inline void print(){ std::cout << (this->strFormat()) << '\n'; }
-		inline operator std::string() const { return this->strFormat(); }
+		virtual inline std::string strFormat(char c=' ') const { return "{-}"; }
+		virtual inline void print() const { std::cout << (this->strFormat()) << '\n'; }
+		virtual inline operator std::string() const { return this->strFormat(); }
 		
 		template<class T>
 		friend std::ostream& operator<<(std::ostream& ost, Container<T>& c);
